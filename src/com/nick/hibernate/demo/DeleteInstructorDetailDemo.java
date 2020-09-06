@@ -25,9 +25,11 @@ public class DeleteInstructorDetailDemo {
 			
 			session.beginTransaction();
 			
-			InstructorDetail insDet = session.get(InstructorDetail.class, 2);
+			InstructorDetail insDet = session.get(InstructorDetail.class, 3);
 			
 			System.out.println(insDet);
+			
+			insDet.getInstructor().setInstructorDetial(null);
 			
 			System.out.println(insDet.getInstructor());
 			
@@ -35,7 +37,10 @@ public class DeleteInstructorDetailDemo {
 			
 			session.getTransaction().commit();
 			
+		} catch(Exception e) {
+			e.printStackTrace();
 		} finally {
+			session.close();
 			factory.close();
 		}
 	}
